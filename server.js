@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 //const mongodb = require('mongodb');
 const bodyParser = require('body-parser');
 
+const items = require('./routes/api/items');
+
 const app = express();
 
 // Bodyparser Middleware
@@ -16,6 +18,9 @@ mongoose
   .connect(db, {useNewUrlParser: true})
   .then(() => console.log('Database connected...'))
   .catch(err => console.log(err))
+
+  // User Routes
+  app.use('/api/items', items)
 
   const port = process.env.PORT || 5000;
 
